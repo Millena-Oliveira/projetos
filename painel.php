@@ -33,9 +33,9 @@ $emailUsuario = $_SESSION['usuario_email'];
                 <a href="index.php" class="btn btn-sm btn-outline-light me-2">
                     <i class="fas fa-th-large me-1"></i> Temas
                 </a>
-                <button class="btn btn-sm btn-outline-light" id="btnSair">
+                <a href="logout.php" class="btn btn-sm btn-outline-light">
                     <i class="fas fa-sign-out-alt me-1"></i> Sair
-                </button>
+                </a>
             </div>
         </div>
     </nav>
@@ -101,11 +101,6 @@ $emailUsuario = $_SESSION['usuario_email'];
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    document.getElementById('btnSair').addEventListener('click', async () => {
-        await fetch('api/auth.php', { method: 'DELETE' });
-        window.location.href = 'index.php';
-    });
-
     function escapeHtml(text) {
         if (!text) return '';
         const d = document.createElement('div');

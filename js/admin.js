@@ -22,10 +22,9 @@ function iniciarPainel() {
 }
 
 function configurarEventos() {
-    // Logout -> destrói sessão e volta para login unificado
-    document.getElementById('btnLogout').addEventListener('click', async () => {
-        await fetch(`${API}/auth.php`, { method: 'DELETE' });
-        window.location.href = '../login.php';
+    // Logout -> usa o logout.php que limpa a sessão e volta para a home
+    document.getElementById('btnLogout').addEventListener('click', () => {
+        window.location.href = '../logout.php';
     });
 
     // Sidebar toggle (mobile)

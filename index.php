@@ -52,7 +52,7 @@ $nomeLogado = $logado ? $_SESSION['usuario_nome'] : null;
                             <a class="nav-link" href="painel.php"><i class="fas fa-user-circle me-1"></i> <?= htmlspecialchars(explode(' ', $nomeLogado)[0]) ?></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" id="btnSair"><i class="fas fa-sign-out-alt me-1"></i> Sair</a>
+                            <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt me-1"></i> Sair</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
@@ -235,14 +235,5 @@ $nomeLogado = $logado ? $_SESSION['usuario_nome'] : null;
     </script>
     <!-- JavaScript personalizado -->
     <script src="js/app.js"></script>
-    <?php if ($logado): ?>
-    <script>
-        document.getElementById('btnSair').addEventListener('click', async (e) => {
-            e.preventDefault();
-            await fetch('api/auth.php', { method: 'DELETE' });
-            window.location.reload();
-        });
-    </script>
-    <?php endif; ?>
 </body>
 </html>
