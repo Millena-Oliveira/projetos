@@ -87,3 +87,25 @@
     color: #DAA520;
     text-decoration: underline;
 }
+
+.input-group-text {
+    background: #F5EDE0;
+    border-color: #D4C4A8;
+    color: #8B4513;
+}
+
+.form-control:focus {
+    border-color: #DAA520;
+    box-shadow: 0 0 0 0.2rem rgba(218, 165, 32, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: #5C2E0A;
+    font-size: 0.9rem;
+}
+
+.alert-danger {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+}

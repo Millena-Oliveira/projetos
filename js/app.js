@@ -88,8 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Smooth scroll para links da navbar
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            // Ignorar âncoras vazias (ex.: href="#") para não quebrar outros handlers (Sair etc.)
+            if (!href || href === '#') return;
             e.preventDefault();
-            const target = document.querySelector(link.getAttribute('href'));
+            const target = document.querySelector(href);
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
