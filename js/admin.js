@@ -6,58 +6,26 @@ const API = '../api';
 let categoriasCache = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-    verificarSessao();
+    // Proteção agora é feita server-side em admin/index.php via exigirAdmin().
+    // Quando o script executa, o admin já está autenticado.
+    iniciarPainel();
     configurarEventos();
 });
 
 /* ===== AUTENTICAÇÃO ===== */
 
-function verificarSessao() {
-    fetch(`${API}/login.php`)
-        .then(r => r.json())
-        .then(data => {
-            if (data.logado) {
-                mostrarPainel(data.admin);
-            }
-        })
-        .catch(() => {});
+function iniciarPainel() {
+    carregarDashboard();
+    carregarCategorias();
+    carregarFlashcards();
+    carregarConteudos();
 }
 
 function configurarEventos() {
-    // Login
-    document.getElementById('formLogin').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        const senha = document.getElementById('loginSenha').value;
-        const erro = document.getElementById('loginErro');
-        erro.classList.add('d-none');
-
-        try {
-            const res = await fetch(`${API}/login.php`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, senha })
-            });
-            const data = await res.json();
-
-            if (data.sucesso) {
-                mostrarPainel(data.admin);
-            } else {
-                erro.textContent = data.erro || 'Erro ao fazer login';
-                erro.classList.remove('d-none');
-            }
-        } catch (err) {
-            erro.textContent = 'Erro de conexão com o servidor';
-            erro.classList.remove('d-none');
-        }
-    });
-
-    // Logout
+    // Logout -> destrói sessão e volta para login unificado
     document.getElementById('btnLogout').addEventListener('click', async () => {
-        await fetch(`${API}/login.php`, { method: 'DELETE' });
-        document.getElementById('painelAdmin').classList.add('d-none');
-        document.getElementById('telaLogin').style.display = 'flex';
-        document.getElementById('formLogin').reset();
+        await fetch(`${API}/auth.php`, { method: 'DELETE' });
+        window.location.href = '../login.php';
     });
 
     // Sidebar toggle (mobile)
@@ -84,16 +52,6 @@ function configurarEventos() {
 
     // Filtro de categoria nos flashcards
     document.getElementById('filtroCategoria').addEventListener('change', carregarFlashcards);
-}
-
-function mostrarPainel(admin) {
-    document.getElementById('telaLogin').style.display = 'none';
-    document.getElementById('painelAdmin').classList.remove('d-none');
-    document.getElementById('adminNome').textContent = admin.nome;
-    carregarDashboard();
-    carregarCategorias();
-    carregarFlashcards();
-    carregarConteudos();
 }
 
 /* ===== DASHBOARD ===== */

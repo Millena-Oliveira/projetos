@@ -1,0 +1,108 @@
+/* =====================================================
+   Roma Antiga - Estilos do Painel do Usuário (aluno)
+   ===================================================== */
+
+.painel-main {
+    padding-top: 90px;
+    padding-bottom: 3rem;
+    min-height: 100vh;
+    background: #FAF3E8;
+}
+
+.painel-header {
+    margin-bottom: 1.5rem;
+}
+
+.painel-header h1 {
+    font-family: 'Cinzel', serif;
+    color: #5C2E0A;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.painel-header p {
+    color: #7A6A5A;
+    margin: 0;
+}
+
+.painel-stat {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
+    border: 1px solid #D4C4A8;
+}
+
+.painel-stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.bg-primary-roma   { background: linear-gradient(135deg, #8B4513, #5C2E0A); }
+.bg-secondary-roma { background: linear-gradient(135deg, #DAA520, #B8860B); }
+.bg-success-roma   { background: linear-gradient(135deg, #2E8B57, #1F5F3C); }
+
+.painel-stat-valor {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #5C2E0A;
+    line-height: 1;
+}
+
+.painel-stat-label {
+    font-size: 0.85rem;
+    color: #7A6A5A;
+    margin-top: 4px;
+}
+
+.painel-bloco {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.08);
+    border: 1px solid #D4C4A8;
+}
+
+.painel-titulo {
+    font-family: 'Cinzel', serif;
+    color: #5C2E0A;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.categoria-progresso {
+    margin-bottom: 1rem;
+}
+
+.categoria-progresso-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #3A2A1A;
+}
+
+.categoria-progresso .progress {
+    height: 18px;
+    border-radius: 6px;
+    background: #F0E6D3;
+}
+
+.categoria-progresso .progress-bar {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 18px;
+}

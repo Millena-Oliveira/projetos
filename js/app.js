@@ -14,15 +14,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Eventos nos cards de categoria
     document.querySelectorAll('.categoria-card').forEach(card => {
         card.addEventListener('click', () => {
+            // Exige login para estudar: se não logado, vai para a tela de login
+            if (!window.USUARIO_LOGADO) {
+                window.location.href = 'login.php';
+                return;
+            }
             const categoriaId = card.dataset.id;
             const categoriaNome = card.querySelector('.categoria-nome').textContent;
             abrirCategoria(categoriaId, categoriaNome);
         });
     });
 
-    // Evento de virar flashcard
+    // Evento de virar flashcard (registra progresso quando vira para a resposta)
     document.getElementById('flashcard').addEventListener('click', () => {
-        document.getElementById('flashcard').classList.toggle('flipped');
+        const el = document.getElementById('flashcard');
+        el.classList.toggle('flipped');
+        if (el.classList.contains('flipped')) {
+            registrarProgresso();
+        }
     });
 
     // Navegação
@@ -38,9 +47,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'ArrowRight') navegarFlashcard(1);
         if (e.key === ' ') {
             e.preventDefault();
-            document.getElementById('flashcard').classList.toggle('flipped');
+            const el = document.getElementById('flashcard');
+            el.classList.toggle('flipped');
+            if (el.classList.contains('flipped')) {
+                registrarProgresso();
+            }
         }
     });
+
+    /**
+     * Registra no back-end que o flashcard atual foi estudado
+     */
+    async function registrarProgresso() {
+        if (!window.USUARIO_LOGADO) return;
+        const card = flashcardsData[currentIndex];
+        if (!card || !card.id) return;
+        try {
+            await fetch('api/progresso.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ flashcard_id: card.id })
+            });
+        } catch (e) {
+            // silencioso
+        }
+    }
 
     // Tabs
     document.querySelectorAll('#tabsConteudo .nav-link').forEach(tab => {

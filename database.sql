@@ -70,6 +70,35 @@ CREATE TABLE IF NOT EXISTS administradores (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================================
+-- TABELA: usuarios
+-- Armazena os alunos cadastrados no sistema
+-- =====================================================
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    ativo TINYINT(1) DEFAULT 1,
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- =====================================================
+-- TABELA: progresso_usuario
+-- Registra os flashcards estudados por cada aluno
+-- =====================================================
+CREATE TABLE IF NOT EXISTS progresso_usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    flashcard_id INT NOT NULL,
+    categoria_id INT NOT NULL,
+    visualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uniq_usuario_flashcard (usuario_id, flashcard_id),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (flashcard_id) REFERENCES flashcards(id) ON DELETE CASCADE,
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- =====================================================
 -- DADOS INICIAIS
 -- =====================================================
 

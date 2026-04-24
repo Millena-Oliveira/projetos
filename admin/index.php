@@ -1,5 +1,9 @@
 <?php
-session_start();
+require_once __DIR__ . '/../auth_check.php';
+// Se não estiver logado como admin, redireciona para a tela de login unificada
+exigirAdmin('../login.php');
+
+$adminNome = $_SESSION['admin_nome'] ?? 'Administrador';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,8 +22,8 @@ session_start();
 </head>
 <body>
 
-    <!-- Tela de Login -->
-    <div id="telaLogin" class="login-container">
+    <!-- Tela de Login (mantida como fallback, mas proteção é server-side via exigirAdmin) -->
+    <div id="telaLogin" class="login-container d-none">
         <div class="login-card">
             <div class="login-header">
                 <i class="fas fa-shield-alt"></i>
@@ -53,7 +57,7 @@ session_start();
     </div>
 
     <!-- Painel Principal -->
-    <div id="painelAdmin" class="d-none">
+    <div id="painelAdmin">
         <!-- Sidebar -->
         <nav class="admin-sidebar" id="sidebar">
             <div class="sidebar-header">
@@ -94,7 +98,7 @@ session_start();
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="topbar-info">
-                    <span>Olá, <strong id="adminNome">Administrador</strong></span>
+                    <span>Olá, <strong id="adminNome"><?= htmlspecialchars($adminNome) ?></strong></span>
                     <a href="../index.php" target="_blank" class="btn btn-sm btn-outline-primary ms-3">
                         <i class="fas fa-external-link-alt me-1"></i> Ver Site
                     </a>

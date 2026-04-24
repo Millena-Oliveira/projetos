@@ -1,9 +1,13 @@
 <?php
 require_once 'conexao.php';
+require_once 'auth_check.php';
 
 // Buscar categorias ativas
 $stmt = $pdo->query("SELECT * FROM categorias WHERE ativo = 1 ORDER BY ordem ASC");
 $categorias = $stmt->fetchAll();
+
+$logado = usuarioLogado();
+$nomeLogado = $logado ? $_SESSION['usuario_nome'] : null;
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -33,7 +37,7 @@ $categorias = $stmt->fetchAll();
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
                         <a class="nav-link active" href="#inicio"><i class="fas fa-home me-1"></i> Início</a>
                     </li>
@@ -43,6 +47,21 @@ $categorias = $stmt->fetchAll();
                     <li class="nav-item">
                         <a class="nav-link" href="#sobre"><i class="fas fa-info-circle me-1"></i> Sobre</a>
                     </li>
+                    <?php if ($logado): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="painel.php"><i class="fas fa-user-circle me-1"></i> <?= htmlspecialchars(explode(' ', $nomeLogado)[0]) ?></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="btnSair"><i class="fas fa-sign-out-alt me-1"></i> Sair</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php"><i class="fas fa-sign-in-alt me-1"></i> Entrar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="registro.php"><i class="fas fa-user-plus me-1"></i> Cadastrar</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -210,7 +229,20 @@ $categorias = $stmt->fetchAll();
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Flag de autenticação do usuário -->
+    <script>
+        window.USUARIO_LOGADO = <?= $logado ? 'true' : 'false' ?>;
+    </script>
     <!-- JavaScript personalizado -->
     <script src="js/app.js"></script>
+    <?php if ($logado): ?>
+    <script>
+        document.getElementById('btnSair').addEventListener('click', async (e) => {
+            e.preventDefault();
+            await fetch('api/auth.php', { method: 'DELETE' });
+            window.location.reload();
+        });
+    </script>
+    <?php endif; ?>
 </body>
 </html>

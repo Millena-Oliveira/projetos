@@ -74,6 +74,16 @@ Acesse:
 - **Email:** admin@romaantiga.com
 - **Senha:** admin123
 
+## Login e Cadastro
+
+- A página `login.php` funciona como tela de **login unificada**: alunos e administradores usam o mesmo formulário.
+- Ao fazer login, o usuário é redirecionado automaticamente:
+  - **Administrador** → `admin/index.php` (painel administrativo)
+  - **Aluno** → `painel.php` (painel do usuário)
+- `registro.php` é a página **pública** de cadastro de alunos.
+- Os **temas** (categorias) ficam visíveis em `index.php` para qualquer visitante, mas para **estudar flashcards é necessário estar logado** — ao clicar em um tema sem estar logado, o usuário é redirecionado para `login.php`.
+- O **painel do aluno** (`painel.php`) mostra estatísticas de progresso, progresso por tema e histórico dos últimos flashcards estudados.
+
 ## Funcionalidades
 
 ### Interface do Aluno
