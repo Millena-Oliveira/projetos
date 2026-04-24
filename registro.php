@@ -24,7 +24,9 @@ if (usuarioLogado()) {
             font-family: 'Lora', Georgia, serif;
             min-height: 100vh;
             margin: 0;
-            background: linear-gradient(135deg, #2C1810 0%, #5C2E0A 50%, #8B4513 100%);
+            background:
+                linear-gradient(180deg, rgba(44, 24, 16, 0.85) 0%, rgba(92, 46, 10, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1920&q=80') center/cover no-repeat;
         }
         .auth-wrapper {
             min-height: 100vh;
