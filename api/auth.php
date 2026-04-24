@@ -26,6 +26,9 @@ if ($method === 'POST') {
     $admin = $stmt->fetch();
 
     if ($admin && password_verify($dados['senha'], $admin['senha'])) {
+        // Limpa qualquer sessão anterior para evitar acúmulo de papéis
+        session_regenerate_id(true);
+        $_SESSION = [];
         $_SESSION['admin_id'] = $admin['id'];
         $_SESSION['admin_nome'] = $admin['nome'];
         $_SESSION['admin_email'] = $admin['email'];
@@ -48,6 +51,9 @@ if ($method === 'POST') {
     $usuario = $stmt->fetch();
 
     if ($usuario && password_verify($dados['senha'], $usuario['senha'])) {
+        // Limpa qualquer sessão anterior para evitar acúmulo de papéis
+        session_regenerate_id(true);
+        $_SESSION = [];
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nome'] = $usuario['nome'];
         $_SESSION['usuario_email'] = $usuario['email'];

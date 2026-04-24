@@ -1,8 +1,16 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . '/../conexao.php';
+require_once __DIR__ . '/../auth_check.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
+
+// Operações de escrita exigem admin autenticado
+if ($method !== 'GET' && !adminLogado()) {
+    http_response_code(401);
+    echo json_encode(['erro' => 'Não autorizado']);
+    exit;
+}
 
 // GET - Listar flashcards
 if ($method === 'GET') {

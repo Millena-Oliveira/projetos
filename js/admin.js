@@ -116,7 +116,7 @@ async function carregarCategorias() {
                 <td>${c.ativo == 1 ? '<span class="badge-ativo">Ativo</span>' : '<span class="badge-inativo">Inativo</span>'}</td>
                 <td>
                     <button class="btn btn-acao btn-editar" onclick="editarCategoria(${c.id})"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-acao btn-excluir" onclick="excluirCategoria(${c.id}, '${escapeHtml(c.nome)}')"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-acao btn-excluir" onclick="excluirCategoria(${c.id})"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
         `).join('');
@@ -198,7 +198,9 @@ async function salvarCategoria(e) {
     }
 }
 
-async function excluirCategoria(id, nome) {
+async function excluirCategoria(id) {
+    const cat = categoriasCache.find(c => c.id == id);
+    const nome = cat ? cat.nome : '';
     if (!confirm(`Deseja excluir a categoria "${nome}"?\nTodos os flashcards e conteúdos vinculados serão removidos.`)) return;
 
     try {
