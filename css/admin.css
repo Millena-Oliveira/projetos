@@ -1,0 +1,399 @@
+/* =====================================================
+   Roma Antiga - Estilos do Painel Administrativo
+   Design profissional, limpo e funcional
+   ===================================================== */
+
+:root {
+    --admin-primaria: #4A5568;
+    --admin-primaria-escura: #2D3748;
+    --admin-acento: #3182CE;
+    --admin-sucesso: #38A169;
+    --admin-perigo: #E53E3E;
+    --admin-aviso: #D69E2E;
+    --admin-fundo: #F7FAFC;
+    --admin-card: #FFFFFF;
+    --admin-borda: #E2E8F0;
+    --admin-texto: #2D3748;
+    --admin-texto-claro: #718096;
+    --sidebar-largura: 240px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--admin-fundo);
+    color: var(--admin-texto);
+    font-size: 0.9rem;
+}
+
+/* ===== LOGIN ===== */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--admin-primaria-escura) 0%, var(--admin-primaria) 100%);
+}
+
+.login-card {
+    background: var(--admin-card);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.login-header i {
+    font-size: 2.5rem;
+    color: var(--admin-acento);
+    margin-bottom: 0.5rem;
+}
+
+.login-header h4 {
+    font-weight: 700;
+    color: var(--admin-primaria-escura);
+    margin-bottom: 0.3rem;
+}
+
+.login-header p {
+    color: var(--admin-texto-claro);
+    font-size: 0.85rem;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--admin-texto-claro);
+}
+
+.btn-admin-primary {
+    background: var(--admin-acento);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-admin-primary:hover {
+    background: #2B6CB0;
+    color: #fff;
+}
+
+/* ===== SIDEBAR ===== */
+.admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-largura);
+    height: 100vh;
+    background: var(--admin-primaria-escura);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+    padding: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.sidebar-header i {
+    font-size: 1.8rem;
+    color: var(--admin-acento);
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.sidebar-header span {
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: block;
+}
+
+.sidebar-header small {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0.5rem 0;
+    flex: 1;
+}
+
+.sidebar-menu li {
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    font-size: 0.9rem;
+}
+
+.sidebar-menu li:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-menu li.active {
+    background: rgba(49, 130, 206, 0.15);
+    border-left-color: var(--admin-acento);
+    color: var(--admin-acento);
+}
+
+.sidebar-menu li i {
+    width: 20px;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.sidebar-footer {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== MAIN ===== */
+.admin-main {
+    margin-left: var(--sidebar-largura);
+    min-height: 100vh;
+}
+
+.admin-topbar {
+    background: var(--admin-card);
+    padding: 0.8rem 1.5rem;
+    border-bottom: 1px solid var(--admin-borda);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.topbar-info {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    font-size: 0.85rem;
+    color: var(--admin-texto-claro);
+}
+
+.admin-section {
+    padding: 1.5rem;
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--admin-primaria-escura);
+    margin-bottom: 1rem;
+}
+
+/* ===== STAT CARDS ===== */
+.stat-card {
+    background: var(--admin-card);
+    border-radius: 10px;
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--admin-borda);
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.stat-categorias .stat-icon { background: var(--admin-acento); }
+.stat-flashcards .stat-icon { background: var(--admin-sucesso); }
+.stat-conteudos .stat-icon  { background: var(--admin-aviso); }
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--admin-primaria-escura);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--admin-texto-claro);
+    margin-top: 2px;
+}
+
+/* ===== CARDS ===== */
+.card {
+    border: 1px solid var(--admin-borda);
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.card-title {
+    font-weight: 600;
+    color: var(--admin-primaria-escura);
+}
+
+/* ===== TABELAS ===== */
+.table {
+    font-size: 0.85rem;
+}
+
+.table thead th {
+    background: var(--admin-fundo);
+    border-bottom: 2px solid var(--admin-borda);
+    font-weight: 600;
+    color: var(--admin-texto-claro);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    border-bottom: 1px solid var(--admin-borda);
+}
+
+.text-truncate-cell {
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cor-preview {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: inline-block;
+    border: 2px solid var(--admin-borda);
+}
+
+/* ===== BADGES ===== */
+.badge-ativo {
+    background: #C6F6D5;
+    color: #22543D;
+    font-size: 0.75rem;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.badge-inativo {
+    background: #FED7D7;
+    color: #742A2A;
+    font-size: 0.75rem;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* ===== BOTÕES DE AÇÃO ===== */
+.btn-acao {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+.btn-editar {
+    color: var(--admin-acento);
+    border: 1px solid var(--admin-acento);
+    background: transparent;
+}
+
+.btn-editar:hover {
+    background: var(--admin-acento);
+    color: #fff;
+}
+
+.btn-excluir {
+    color: var(--admin-perigo);
+    border: 1px solid var(--admin-perigo);
+    background: transparent;
+}
+
+.btn-excluir:hover {
+    background: var(--admin-perigo);
+    color: #fff;
+}
+
+/* ===== MODAIS ===== */
+.modal-header {
+    background: var(--admin-fundo);
+    border-bottom: 1px solid var(--admin-borda);
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.form-label {
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--admin-primaria-escura);
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 991.98px) {
+    .admin-sidebar {
+        transform: translateX(-100%);
+    }
+
+    .admin-sidebar.show {
+        transform: translateX(0);
+    }
+
+    .admin-main {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .admin-section {
+        padding: 1rem;
+    }
+
+    .stat-card {
+        padding: 0.8rem;
+    }
+
+    .stat-value {
+        font-size: 1.4rem;
+    }
+}
