@@ -2,6 +2,10 @@
 require_once 'conexao.php';
 require_once 'auth_check.php';
 
+// Evita que o navegador mostre a página em cache depois do logout
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+
 // Buscar categorias ativas
 $stmt = $pdo->query("SELECT * FROM categorias WHERE ativo = 1 ORDER BY ordem ASC");
 $categorias = $stmt->fetchAll();
